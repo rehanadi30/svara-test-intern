@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/svaraLogo"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src=""/>-->
+
+    <TextView
+        android:id="@+id/masuk"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="Sign In"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/namapengguna"
+        android:layout_below="@id/masuk"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:fontFamily="sans-serif-medium"
+        android:text="Username"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        />
+
+    <EditText
+        android:id="@+id/form_namapengguna"
+        android:layout_below="@id/namapengguna"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:hint="Masukkan nama pengguna"
+        android:autofillHints="username"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/katasandi"
+        android:layout_below="@id/form_namapengguna"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="Password"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        />
+
+    <EditText
+        android:id="@+id/form_katasandi"
+        android:layout_below="@id/katasandi"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:hint="Masukkan password"
+        android:inputType="textPassword"
+        android:autofillHints="password" />
+
+    <Button
+        android:id="@+id/masukBtn"
+        android:layout_below="@id/form_katasandi"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="Sign In"
+        />
+    <TextView
+        android:id="@+id/donthaveacc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?  "
+        android:layout_below="@+id/masukBtn"/>
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_toRightOf="@+id/donthaveacc"
+        android:layout_below="@+id/masukBtn"/>
+        android:clickable="true"/>
+</RelativeLayout>

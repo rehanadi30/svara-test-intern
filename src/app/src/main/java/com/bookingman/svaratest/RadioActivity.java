@@ -1,4 +1,6 @@
 package com.bookingman.svaratest;
 
-public class RadioActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class RadioActivity extends AppCompatActivity {
 }
