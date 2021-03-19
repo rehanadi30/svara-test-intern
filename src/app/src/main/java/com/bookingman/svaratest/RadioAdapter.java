@@ -1,5 +1,6 @@
 package com.bookingman.svaratest;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,22 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
 
     @Override
     public void onBindViewHolder(RadioViewHolder holder, int position){
-        String freq = Float.toString(radioList.get(position).getFrequency());
+        String freq = Double.toString(radioList.get(position).getFrequency());
         String cf = radioList.get(position).getCity() + " " + freq;
         holder.txtNamaRadio.setText(radioList.get(position).getName());
         holder.txtCityFreq.setText(cf);
+
+        holder.txtNamaRadio.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                int id = radioList.get(position).getId();
+
+//                Intent intent = new Intent(this, RadioActivity.class);
+//                intent.putExtra("message_key", id);
+
+//                startActivity(intent);
+            }
+        });
     }
 
     @Override

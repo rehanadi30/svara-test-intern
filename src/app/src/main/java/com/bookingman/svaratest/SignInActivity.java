@@ -1,7 +1,9 @@
 package com.bookingman.svaratest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,8 @@ public class SignInActivity extends AppCompatActivity {
     private EditText password;
     private Button signInBtn;
     private TextView registerText;
+
+    public String TOKEN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,14 @@ public class SignInActivity extends AppCompatActivity {
                         .getInstance()
                         .getApi()
                         .signInUser(txt_namaPengguna, txt_katasandi);
+
+                SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(SignInActivity.this);
+                SharedPreferences.Editor editor = mSettings.edit();
+
+                TOKEN = "";
+                editor.putString("token", TOKEN);
+                editor.apply();
+
 
                 call.enqueue(new Callback<LoginResponse>(){
                     @Override

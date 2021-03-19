@@ -30,6 +30,9 @@ public class RadioListActivity extends AppCompatActivity {
 
     private void addData() {
         radioArrayList = new ArrayList<>();
-
+        radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
+        radioArrayList.add(new Radio("Prambors", "Las Vegas", 107.8, "logo", "stream", "website", 2, "images"));
+        radioArrayList.add(new Radio("JakFM", "Bandung", 107.7, "logo", "stream", "website", 3, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
     }
 }

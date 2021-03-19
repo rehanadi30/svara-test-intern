@@ -3,14 +3,14 @@ package com.bookingman.svaratest.model;
 public class Radio {
     public String name;
     public String city;
-    public float frequency;
+    public double frequency;
     public String logo;
     public String stream;
     public String website;
     public int id;
     public String images;
 
-    public Radio(String name, String city, float frequency, String logo, String stream, String website, int id, String images) {
+    public Radio(String name, String city, double frequency, String logo, String stream, String website, int id, String images) {
         this.name = name;
         this.city = city;
         this.frequency = frequency;
@@ -37,7 +37,7 @@ public class Radio {
         this.city = city;
     }
 
-    public float getFrequency() {
+    public double getFrequency() {
         return frequency;
     }
 
