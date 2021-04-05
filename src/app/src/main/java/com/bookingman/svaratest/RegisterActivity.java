@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, SignInActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, RadioListActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(txt_namaPengguna) || TextUtils.isEmpty(txt_kataSandi)) {
                     Toast.makeText(RegisterActivity.this, "Field ini tidak boleh kosong!", Toast.LENGTH_SHORT).show();
                 } else {
-                    registerPengguna(txt_namaPengguna, txt_kataSandi);
+//                    registerPengguna(txt_namaPengguna, txt_kataSandi);
                     Toast.makeText(RegisterActivity.this, "Register Berhasil!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, RadioActivity.class);
                     startActivity(intent);

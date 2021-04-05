@@ -2,13 +2,16 @@ package com.bookingman.svaratest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookingman.svaratest.model.LoginResponse;
+import com.bookingman.svaratest.model.Radio;
 import com.bookingman.svaratest.model.RadioResponse;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,38 +21,22 @@ public class RadioActivity extends AppCompatActivity {
     public int id;
 
     public TextView namaRadio;
-    public TextView kota;
+    public ImageView gambarRadio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.radio_activity);
-        Intent intent = getIntent();
-        id = intent.getIntExtra("message_key", 0);
 
-        Call<RadioResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getRadioById(id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDU0MWEzMzNmNGM2Nzc0Y2E0MjQ3ODIiLCJpYXQiOjE2MTYxMjQ0NjcsImV4cCI6MzIzMjI0OTUzNCwiaXNzIjoiZWYzMTAwMWUzN2VkNjQxODQyNGYifQ.ZL_yi365s4BrK2_GZDmctFym7MEqF0Vgs4DKpi61CXY");
+        Radio radio = getIntent().getParcelableExtra("Radio_Terpilih");
 
-        call.enqueue(new Callback<RadioResponse>(){
-            @Override
-            public void onResponse(Call<RadioResponse> call, Response<RadioResponse> response){
-                RadioResponse radioResponse = response.body();
+        id = radio.getId();
+        String url = radio.getImages();
+        namaRadio = findViewById(R.id.namaRadio);
+        namaRadio.setText(radio.getName());
 
-                if(!radioResponse.isError()){
-
-                } else{
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RadioResponse> call, Throwable t) {
-
-            }
-        });
-
+        gambarRadio = findViewById(R.id.gambarRadio);
+        Picasso.get().load(url).into(gambarRadio);
     }
 }

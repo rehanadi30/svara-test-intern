@@ -1,6 +1,9 @@
 package com.bookingman.svaratest.model;
 
-public class Radio {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Radio implements Parcelable {
     public String name;
     public String city;
     public double frequency;
@@ -84,4 +87,55 @@ public class Radio {
     public void setImages(String images) {
         this.images = images;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.city);
+        dest.writeDouble(this.frequency);
+        dest.writeString(this.logo);
+        dest.writeString(this.stream);
+        dest.writeString(this.website);
+        dest.writeInt(this.id);
+        dest.writeString(this.images);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.name = source.readString();
+        this.city = source.readString();
+        this.frequency = source.readDouble();
+        this.logo = source.readString();
+        this.stream = source.readString();
+        this.website = source.readString();
+        this.id = source.readInt();
+        this.images = source.readString();
+    }
+
+    protected Radio(Parcel in) {
+        this.name = in.readString();
+        this.city = in.readString();
+        this.frequency = in.readDouble();
+        this.logo = in.readString();
+        this.stream = in.readString();
+        this.website = in.readString();
+        this.id = in.readInt();
+        this.images = in.readString();
+    }
+
+    public static final Creator<Radio> CREATOR = new Creator<Radio>() {
+        @Override
+        public Radio createFromParcel(Parcel source) {
+            return new Radio(source);
+        }
+
+        @Override
+        public Radio[] newArray(int size) {
+            return new Radio[size];
+        }
+    };
 }

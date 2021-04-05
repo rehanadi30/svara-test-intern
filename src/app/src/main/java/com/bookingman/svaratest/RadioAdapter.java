@@ -40,10 +40,6 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
             public void onClick(View v){
                 int id = radioList.get(position).getId();
 
-//                Intent intent = new Intent(this, RadioActivity.class);
-//                intent.putExtra("message_key", id);
-
-//                startActivity(intent);
             }
         });
     }

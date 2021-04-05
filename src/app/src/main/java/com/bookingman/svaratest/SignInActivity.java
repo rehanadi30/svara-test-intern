@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bookingman.svaratest.model.LoginResponse;
+import com.bookingman.svaratest.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +26,8 @@ public class SignInActivity extends AppCompatActivity {
     private EditText password;
     private Button signInBtn;
     private TextView registerText;
+
+    public User currUser;
 
     public String TOKEN;
 
@@ -66,13 +69,6 @@ public class SignInActivity extends AppCompatActivity {
                         .getApi()
                         .signInUser(txt_namaPengguna, txt_katasandi);
 
-                SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(SignInActivity.this);
-                SharedPreferences.Editor editor = mSettings.edit();
-
-                TOKEN = "";
-                editor.putString("token", TOKEN);
-                editor.apply();
-
 
                 call.enqueue(new Callback<LoginResponse>(){
                     @Override
@@ -81,9 +77,6 @@ public class SignInActivity extends AppCompatActivity {
 
                         if(!loginResponse.isError()){
                             Toast.makeText(SignInActivity.this, "Sign In Berhasil!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignInActivity.this, RadioListActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
                         } else{
                             Toast.makeText(SignInActivity.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -94,6 +87,10 @@ public class SignInActivity extends AppCompatActivity {
 
                     }
                 });
+                currUser = new User();
+                Intent i = new Intent(SignInActivity.this, RadioListActivity.class);
+                i.putExtra("currUser", currUser);
+                startActivity(i);
             }
         });
     }
