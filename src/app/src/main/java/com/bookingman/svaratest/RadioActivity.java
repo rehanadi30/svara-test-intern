@@ -33,11 +33,12 @@ public class RadioActivity extends AppCompatActivity {
 
         id = radio.getId();
         String url = radio.getImages();
-        String urlTest = "https://goo.gl/ghVPFq";
+        String urlTest1 = "https://goo.gl/ghVPFq";
+        String urlTest2 = "https://api.svara.id/svara-radio-logo/download/573e8bfd0c3f8b20491c8147";
         namaRadio = findViewById(R.id.namaRadio);
         namaRadio.setText(radio.getName());
 
         gambarRadio = findViewById(R.id.gambarRadio);
-        Picasso.get().load(urlTest).into(gambarRadio);
+        Picasso.get().load(urlTest1).into(gambarRadio);
     }
 }
