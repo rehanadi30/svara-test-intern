@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +38,7 @@ public class RadioListActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new RadioAdapter(radioArrayList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RadioListActivity.this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(RadioListActivity.this, 3);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.addOnItemTouchListener(
@@ -56,38 +57,38 @@ public class RadioListActivity extends AppCompatActivity {
         );
     }
 
-    private void addData(String token) {
-        Call<RadioResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getRadioAll(token);
-        call.enqueue(new Callback<RadioResponse>(){
-            @Override
-            public void onResponse(Call<RadioResponse> call, Response<RadioResponse> response){
-                RadioResponse radioResponse = response.body();
-                JsonObject obj = null;
-
-                try{
-                    obj = new JsonObject(radioResponse.toString());
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
-
-                if(!radioResponse.isError()){
-                    Toast.makeText(RadioListActivity.this, "Radio berhasi. difetch!", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(RadioListActivity.this, radioResponse.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-
-            }
-        });
+    private void addData() {
+//        Call<RadioResponse> call = RetrofitClient
+//                .getInstance()
+//                .getApi()
+//                .getRadioAll(token);
+//        call.enqueue(new Callback<RadioResponse>(){
+//            @Override
+//            public void onResponse(Call<RadioResponse> call, Response<RadioResponse> response){
+//                RadioResponse radioResponse = response.body();
+//                JsonObject obj = null;
+//
+//                try{
+//                    obj = new JsonObject(radioResponse.toString());
+//                } catch (JSONException e){
+//                    e.printStackTrace();
+//                }
+//
+//                if(!radioResponse.isError()){
+//                    Toast.makeText(RadioListActivity.this, "Radio berhasi. difetch!", Toast.LENGTH_SHORT).show();
+//                } else{
+//                    Toast.makeText(RadioListActivity.this, radioResponse.getMessage(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<LoginResponse> call, Throwable t) {
+//
+//            }
+//        });
         radioArrayList = new ArrayList<>();
         for (int i = 0; i < radioArrayList.size(); i++){
-            radioArrayList.add();
+//            radioArrayList.add();
         }
         radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
         radioArrayList.add(new Radio("Prambors", "Las Vegas", 107.8, "logo", "stream", "website", 2, "images"));

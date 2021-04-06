@@ -10,12 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SvaraTest">
-        <activity android:name=".RegisterActivity" />
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".RadioActivity" />
         <activity android:name=".RadioListActivity" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".SignInSignOutActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.SvaraTest.NoActionBar">
             <intent-filter>
