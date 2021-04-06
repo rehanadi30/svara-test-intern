@@ -9,8 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.bookingman.svaratest.model.LoginResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
     private Button loginButton;
@@ -19,6 +26,7 @@ public class LoginFragment extends Fragment {
     private String txt_username;
     private String txt_password;
     private TextView skipText;
+    public String TOKEN;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -55,10 +63,33 @@ public class LoginFragment extends Fragment {
         }
 
             private void loginUser(final String txt_username, final String txt_password) {
-                //Dapetin tokennya
-                Intent i = new Intent(getActivity(), RadioListActivity.class);
-                startActivity(i);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+                Call<LoginResponse> call = RetrofitClient
+                        .getInstance()
+                        .getApi()
+                        .signInUser(txt_username, txt_password);
+
+                call.enqueue(new Callback<LoginResponse>(){
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response){
+                        LoginResponse loginResponse = response.body();
+
+                        if(!loginResponse.isError()){
+                            Toast.makeText(getActivity(), "Sign In Berhasil!", Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent(getActivity(), RadioListActivity.class);
+                            i.putExtra("TOKEN", TOKEN);
+                            startActivity(i);
+                            ((Activity) getActivity()).overridePendingTransition(0, 0);
+                        } else{
+                            Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    }
+                });
             }
             });
 

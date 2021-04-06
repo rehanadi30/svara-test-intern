@@ -44,7 +44,7 @@ public class RadioListActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(RadioListActivity.this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        selected_radio = new Radio("name", "city", 105.5, "logo", "stream", "website", 0, "images");
+                        selected_radio = new Radio("Radio Svara mantab", "city", 105.5, "logo", "stream", "website", 0, "images");
                         Intent i = new Intent(RadioListActivity.this, RadioActivity.class);
                         i.putExtra("Radio_Terpilih", selected_radio);
                         startActivity(i);
@@ -93,6 +93,18 @@ public class RadioListActivity extends AppCompatActivity {
         radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
         radioArrayList.add(new Radio("Prambors", "Las Vegas", 107.8, "logo", "stream", "website", 2, "images"));
         radioArrayList.add(new Radio("JakFM", "Bandung", 107.7, "logo", "stream", "website", 3, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
         radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
     }
 }

@@ -15,11 +15,22 @@
         android:orientation="vertical"
         android:padding="5dp">
 
+        <!-- ImageView Gambar Radio -->
+        <ImageView
+            android:id="@+id/gambarRadio"
+            android:adjustViewBounds="true"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_margin="2dp"
+            android:layout_width="150dp"/>
+
         <!-- TextView Nama Radio -->
         <TextView
             android:id="@+id/txt_nama_radio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
             android:text="8EH Radio ITB"/>
 
 
@@ -28,6 +39,7 @@
             android:id="@+id/txt_city_freq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Bandung 107.9FM"/>
 
     </LinearLayout>

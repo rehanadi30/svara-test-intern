@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".LoginFragment">
 
+    <ImageView
+        android:id="@+id/gambarRadio"
+        android:adjustViewBounds="true"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="2dp"
+        android:layout_width="150dp"
+        android:layout_above="@+id/tv_title"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_svara_xml"/>
+
     <TextView
         android:id="@+id/skipText"
         android:layout_width="wrap_content"
@@ -12,7 +23,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="5dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/opensans_regular"
         android:text="Skip"
         android:textAlignment="center"
         android:textSize="20dp" />
@@ -22,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:textSize="50sp"
-        android:fontFamily="@font/indigo_daisy"
+        android:fontFamily="@font/opensans_regular"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="10dp"
         android:layout_above="@id/et_username"/>
@@ -47,7 +58,7 @@
         android:layout_marginRight="20dp"
         android:padding="15dp"
         android:inputType="textEmailAddress"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/opensans_regular"
         android:layout_above="@id/et_password"
         android:background="@drawable/et_custom"
         android:textSize="15sp" />
@@ -61,7 +72,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:padding="15dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/opensans_regular"
         android:inputType="textPassword"
         android:layout_centerInParent="true"
         android:background="@drawable/et_custom"
@@ -76,7 +87,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/opensans_regular"
         android:textColor="@android:color/white"
         android:text="@string/login"/>
 

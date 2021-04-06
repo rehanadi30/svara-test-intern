@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookingman.svaratest.model.Radio;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -34,6 +36,12 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
         String cf = radioList.get(position).getCity() + " " + freq;
         holder.txtNamaRadio.setText(radioList.get(position).getName());
         holder.txtCityFreq.setText(cf);
+        String urlTest = "https://goo.gl/Wqz4Ev";
+        String url = radioList.get(position).getLogo();
+        Picasso.get()
+                .load(urlTest)
+                .fit()
+                .into(holder.gambarRadio);
 
         holder.txtNamaRadio.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -51,11 +59,13 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
 
     public class RadioViewHolder extends RecyclerView.ViewHolder{
         private TextView txtNamaRadio, txtCityFreq;
+        private ImageView gambarRadio;
 
         public RadioViewHolder(View itemView){
             super(itemView);
             txtNamaRadio = (TextView) itemView.findViewById(R.id.txt_nama_radio);
             txtCityFreq = (TextView) itemView.findViewById(R.id.txt_city_freq);
+            gambarRadio = (ImageView) itemView.findViewById(R.id.gambarRadio);
         }
     }
 }

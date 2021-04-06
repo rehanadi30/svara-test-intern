@@ -9,8 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.bookingman.svaratest.model.DefaultResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterFragment extends Fragment {
     private Button registerButton;
@@ -19,6 +26,7 @@ public class RegisterFragment extends Fragment {
     private String txt_username;
     private String txt_password;
     private TextView skipText;
+    public String TOKEN;
 
 
     public RegisterFragment() {
@@ -57,9 +65,34 @@ public class RegisterFragment extends Fragment {
 
             private void registerUser(final String txt_username, final String txt_password) {
                 //Dapetin tokennya
-                Intent i = new Intent(getActivity(), RadioListActivity.class);
-                startActivity(i);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+                Call<DefaultResponse> call = RetrofitClient
+                        .getInstance()
+                        .getApi()
+                        .registerUser(txt_username, txt_password);
+
+                call.enqueue(new Callback<DefaultResponse>() {
+                    @Override
+                    public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                        if (response.code() == 201) {
+                            //Retrieve TOKEN
+                            DefaultResponse dr = response.body();
+                            Toast.makeText(getActivity(), dr.getMsg(), Toast.LENGTH_LONG).show();
+
+                            Intent i = new Intent(getActivity(), RadioListActivity.class);
+                            i.putExtra("TOKEN", TOKEN);
+                            startActivity(i);
+                            ((Activity) getActivity()).overridePendingTransition(0, 0);
+
+                        } else if (response.code() == 422) {
+                            Toast.makeText(getActivity(), "User already exist", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 
