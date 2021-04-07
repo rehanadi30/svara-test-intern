@@ -2,7 +2,9 @@ package com.bookingman.svaratest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +13,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bookingman.svaratest.model.LoginResponse;
 
+import java.util.Objects;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.ContentValues.TAG;
 
 public class LoginFragment extends Fragment {
     private Button loginButton;
     private EditText usernameEditText;
     private EditText passwordEditText;
-    private String txt_username;
-    private String txt_password;
+    private String txt_username = "";
+    private String txt_password = "";
     private TextView skipText;
     public String TOKEN;
 
@@ -48,21 +56,30 @@ public class LoginFragment extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0, 0);
             }
         });
-        usernameEditText = (EditText) v.findViewById(R.id.et_username);
-        txt_username = usernameEditText.toString();
 
-        passwordEditText = (EditText) v.findViewById(R.id.et_password);
-        txt_password = passwordEditText.toString();
+        usernameEditText = v.findViewById(R.id.et_usernameLogin);
+
+        passwordEditText = v.findViewById(R.id.et_passwordLogin);
 
         loginButton = (Button) v.findViewById(R.id.btn_login);
         loginButton.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                loginUser(txt_username, txt_password);
+                txt_username = usernameEditText.getText().toString();
+                txt_password = passwordEditText.getText().toString();
+                if(txt_username.matches("") || txt_password.matches("") ){
+                    Log.d(TAG, "Field masih kosong! ");
+                }
+                else{
+                    Log.d(TAG, "Username yang masuk adalah: " + txt_username);
+                    loginUser(txt_username, txt_password);
+                }
         }
 
-            private void loginUser(final String txt_username, final String txt_password) {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            private void loginUser(String txt_username, String txt_password) {
                 Call<LoginResponse> call = RetrofitClient
                         .getInstance()
                         .getApi()
@@ -73,21 +90,25 @@ public class LoginFragment extends Fragment {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response){
                         LoginResponse loginResponse = response.body();
 
-                        if(!loginResponse.isError()){
+                        if(loginResponse != null){
                             Toast.makeText(getActivity(), "Sign In Berhasil!", Toast.LENGTH_SHORT).show();
+
+                            Log.d(TAG, "User: " + loginResponse.getUsername());
+                            TOKEN = response.body().getToken();
+                            Log.d(TAG, "Token: " + TOKEN);
 
                             Intent i = new Intent(getActivity(), RadioListActivity.class);
                             i.putExtra("TOKEN", TOKEN);
                             startActivity(i);
                             ((Activity) getActivity()).overridePendingTransition(0, 0);
                         } else{
-                            Toast.makeText(getActivity(), loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+//                            Log.d(TAG, "Username yang masuk adalah: " + txt_username);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                        Toast.makeText(getActivity(), "Login Gagal", Toast.LENGTH_LONG).show();
                     }
                 });
             }

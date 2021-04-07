@@ -1,37 +1,53 @@
 package com.bookingman.svaratest.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponse {
-    private boolean error;
-    private String message;
-    private User user;
+    @SerializedName("id")
+    private String id;
+    @SerializedName("username")
+    private String username;
+    @SerializedName("token")
+    private String token;
+    @SerializedName("expire")
+    private int expire;
 
-    public boolean isError() {
-        return error;
+    public LoginResponse(String id, String username, String token, int expire) {
+        this.id = id;
+        this.username = username;
+        this.token = token;
+        this.expire = expire;
     }
 
-    public void setError(boolean error) {
-        this.error = error;
+    public String getId() {
+        return id;
     }
 
-    public String getMessage() {
-        return message;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getUsername() {
+        return username;
     }
 
-    public User getUser() {
-        return user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getToken() {
+        return token;
     }
 
-    public LoginResponse(boolean error, String message, User user){
-        this.error = error;
-        this.message = message;
-        this.user = user;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public int getExpire() {
+        return expire;
+    }
+
+    public void setExpire(int expire) {
+        this.expire = expire;
     }
 }

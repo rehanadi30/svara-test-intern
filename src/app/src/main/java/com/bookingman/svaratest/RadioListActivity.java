@@ -2,6 +2,7 @@ package com.bookingman.svaratest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,22 +20,29 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.ContentValues.TAG;
 
 public class RadioListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RadioAdapter adapter;
     private ArrayList<Radio> radioArrayList;
     private Radio selected_radio;
+    public String TOKEN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.radio_recycler);
 
-        addData();
+        TOKEN = getIntent().getStringExtra("TOKEN");
+        Log.d(TAG, "Token: " + TOKEN);
+
+        addData(TOKEN);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new RadioAdapter(radioArrayList);
@@ -57,54 +65,28 @@ public class RadioListActivity extends AppCompatActivity {
         );
     }
 
-    private void addData() {
-//        Call<RadioResponse> call = RetrofitClient
-//                .getInstance()
-//                .getApi()
-//                .getRadioAll(token);
-//        call.enqueue(new Callback<RadioResponse>(){
-//            @Override
-//            public void onResponse(Call<RadioResponse> call, Response<RadioResponse> response){
-//                RadioResponse radioResponse = response.body();
-//                JsonObject obj = null;
-//
-//                try{
-//                    obj = new JsonObject(radioResponse.toString());
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
-//
-//                if(!radioResponse.isError()){
-//                    Toast.makeText(RadioListActivity.this, "Radio berhasi. difetch!", Toast.LENGTH_SHORT).show();
-//                } else{
-//                    Toast.makeText(RadioListActivity.this, radioResponse.getMessage(), Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoginResponse> call, Throwable t) {
-//
-//            }
-//        });
+    private void addData(String TOKEN) {
         radioArrayList = new ArrayList<>();
         for (int i = 0; i < radioArrayList.size(); i++){
 //            radioArrayList.add();
         }
-        radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
-        radioArrayList.add(new Radio("Prambors", "Las Vegas", 107.8, "logo", "stream", "website", 2, "images"));
-        radioArrayList.add(new Radio("JakFM", "Bandung", 107.7, "logo", "stream", "website", 3, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Tangerang", 107.6, "logo", "stream", "website", 4, "images"));
+        Call<List<RadioResponse>> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getRadioAll(TOKEN);
+        call.enqueue(new Callback<List<RadioResponse>>() {
+            @Override
+            public void onResponse(Call<List<RadioResponse>> call, Response<List<RadioResponse>> response) {
+                List<RadioResponse> rList = response.body();
+                for (int i = 0; i < rList.size(); i++){
+                    radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RadioResponse>> call, Throwable t) {
+
+            }
+        });
     }
 }

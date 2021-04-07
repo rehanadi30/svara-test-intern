@@ -3,17 +3,21 @@ package com.bookingman.svaratest.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User implements Parcelable {
+    @SerializedName("id")
     public int id;
+    @SerializedName("username")
     public String username;
-    public String password;
+    @SerializedName("token")
     public String token;
+    @SerializedName("expire")
     public int expire;
 
-    public User(int id, String username, String password, String token, int expire) {
+    public User(int id, String username, String token, int expire) {
         this.id = id;
         this.username = username;
-        this.password = password;
         this.token = token;
         this.expire = expire;
     }
@@ -21,7 +25,6 @@ public class User implements Parcelable {
     protected User(Parcel in) {
         id = in.readInt();
         username = in.readString();
-        password = in.readString();
         token = in.readString();
         expire = in.readInt();
     }
@@ -29,7 +32,6 @@ public class User implements Parcelable {
     public User() {
         id = 0;
         username = "rehan";
-        password = "password";
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDU0MWEzMzNmNGM2Nzc0Y2E0MjQ3ODIiLCJpYXQiOjE2MTYxMjQ0NjcsImV4cCI6MzIzMjI0OTUzNCwiaXNzIjoiZWYzMTAwMWUzN2VkNjQxODQyNGYifQ.ZL_yi365s4BrK2_GZDmctFym7MEqF0Vgs4DKpi61CXY";
         expire = 5000;
     }
@@ -38,7 +40,6 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(username);
-        dest.writeString(password);
         dest.writeString(token);
         dest.writeInt(expire);
     }
@@ -74,14 +75,6 @@ public class User implements Parcelable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getToken() {

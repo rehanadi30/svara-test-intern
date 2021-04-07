@@ -2,6 +2,7 @@ package com.bookingman.svaratest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class RadioActivity extends AppCompatActivity {
 
     public TextView namaRadio;
     public ImageView gambarRadio;
+    public EditText contohET;
+    public TextView duar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,10 @@ public class RadioActivity extends AppCompatActivity {
         String urlTest2 = "https://api.svara.id/svara-radio-logo/download/573e8bfd0c3f8b20491c8147";
         namaRadio = findViewById(R.id.namaRadio);
         namaRadio.setText(radio.getName());
+
+//        contohET = findViewById(R.id.editTextTextPersonName);
+//        duar = findViewById(R.id.textView);
+//        duar.setText(contohET.getText().toString());
 
         gambarRadio = findViewById(R.id.gambarRadio);
         Picasso.get().load(urlTest1).into(gambarRadio);

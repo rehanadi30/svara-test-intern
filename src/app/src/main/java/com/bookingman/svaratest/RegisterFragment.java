@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bookingman.svaratest.model.DefaultResponse;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,6 +76,7 @@ public class RegisterFragment extends Fragment {
                     public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                         if (response.code() == 201) {
                             //Retrieve TOKEN
+                            TOKEN = response.body().getMsg();
                             DefaultResponse dr = response.body();
                             Toast.makeText(getActivity(), dr.getMsg(), Toast.LENGTH_LONG).show();
 
