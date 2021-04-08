@@ -30,8 +30,6 @@ public class RadioActivity extends AppCompatActivity {
 
     public TextView namaRadio;
     public ImageView gambarRadio;
-    public EditText contohET;
-    public TextView duar;
 
     public ImageView pauseBtn, playBtn, nextBtn, prevBtn;
     MediaPlayer mediaPlayer;
@@ -46,14 +44,10 @@ public class RadioActivity extends AppCompatActivity {
 
         id = radio.getId();
 //        String url = radio.getImages();
-        String urlTest1 = "https://goo.gl/ghVPFq";
+        String urlTest1 = "https://disk.mediaindonesia.com/thumbs/1800x1200/news/2019/04/9b33448b001d9585ddedbb546646c2c7.jpg";
         String urlTest2 = "https://api.svara.id/svara-radio-logo/download/573e8bfd0c3f8b20491c8147";
         namaRadio = findViewById(R.id.namaRadio);
         namaRadio.setText(radio.getName());
-
-//        contohET = findViewById(R.id.editTextTextPersonName);
-//        duar = findViewById(R.id.textView);
-//        duar.setText(contohET.getText().toString());
 
         playBtn = findViewById(R.id.playButton);
         playBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +91,8 @@ public class RadioActivity extends AppCompatActivity {
 
     private void playAudio(Radio radio) {
 
-        String audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+//        String audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+        String audioUrl = "http://stream.suararadio.com:8000/bandung_klitefm_mp3";
 //        String audioUrl = radio.getStream();
 
         // initializing media player
