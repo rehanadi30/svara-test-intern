@@ -6,66 +6,23 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class User implements Parcelable {
-    @SerializedName("id")
-    public int id;
-    @SerializedName("username")
+    public String id;
     public String username;
-    @SerializedName("token")
     public String token;
-    @SerializedName("expire")
     public int expire;
 
-    public User(int id, String username, String token, int expire) {
+    public User(String id, String username, String token, int expire) {
         this.id = id;
         this.username = username;
         this.token = token;
         this.expire = expire;
     }
 
-    protected User(Parcel in) {
-        id = in.readInt();
-        username = in.readString();
-        token = in.readString();
-        expire = in.readInt();
-    }
-
-    public User() {
-        id = 0;
-        username = "rehan";
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDU0MWEzMzNmNGM2Nzc0Y2E0MjQ3ODIiLCJpYXQiOjE2MTYxMjQ0NjcsImV4cCI6MzIzMjI0OTUzNCwiaXNzIjoiZWYzMTAwMWUzN2VkNjQxODQyNGYifQ.ZL_yi365s4BrK2_GZDmctFym7MEqF0Vgs4DKpi61CXY";
-        expire = 5000;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(username);
-        dest.writeString(token);
-        dest.writeInt(expire);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -92,4 +49,40 @@ public class User implements Parcelable {
     public void setExpire(int expire) {
         this.expire = expire;
     }
+
+    public static Creator<User> getCREATOR() {
+        return CREATOR;
+    }
+
+    protected User(Parcel in) {
+        id = in.readString();
+        username = in.readString();
+        token = in.readString();
+        expire = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(username);
+        dest.writeString(token);
+        dest.writeInt(expire);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

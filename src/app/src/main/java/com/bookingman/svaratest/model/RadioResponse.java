@@ -86,7 +86,7 @@ public class RadioResponse {
 //        this.images = images;
 //    }
 
-    public RadioResponse(String name, String city, Double frequency, String logo, String stream, String website, int id, ArrayList<RadioImages> images) {
+    public RadioResponse(String name, String city, Double frequency, String logo, String stream, String website, int id) {
         this.name = name;
         this.city = city;
         this.frequency = frequency;

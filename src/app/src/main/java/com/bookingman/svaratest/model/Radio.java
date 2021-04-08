@@ -11,9 +11,9 @@ public class Radio implements Parcelable {
     public String stream;
     public String website;
     public int id;
-    public String images;
+//    public String images;
 
-    public Radio(String name, String city, double frequency, String logo, String stream, String website, int id, String images) {
+    public Radio(String name, String city, double frequency, String logo, String stream, String website, int id) {
         this.name = name;
         this.city = city;
         this.frequency = frequency;
@@ -21,7 +21,6 @@ public class Radio implements Parcelable {
         this.stream = stream;
         this.website = website;
         this.id = id;
-        this.images = images;
     }
 
     public String getName() {
@@ -44,7 +43,7 @@ public class Radio implements Parcelable {
         return frequency;
     }
 
-    public void setFrequency(float frequency) {
+    public void setFrequency(double frequency) {
         this.frequency = frequency;
     }
 
@@ -80,14 +79,6 @@ public class Radio implements Parcelable {
         this.id = id;
     }
 
-    public String getImages() {
-        return images;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -102,7 +93,6 @@ public class Radio implements Parcelable {
         dest.writeString(this.stream);
         dest.writeString(this.website);
         dest.writeInt(this.id);
-        dest.writeString(this.images);
     }
 
     public void readFromParcel(Parcel source) {
@@ -113,7 +103,6 @@ public class Radio implements Parcelable {
         this.stream = source.readString();
         this.website = source.readString();
         this.id = source.readInt();
-        this.images = source.readString();
     }
 
     protected Radio(Parcel in) {
@@ -124,7 +113,6 @@ public class Radio implements Parcelable {
         this.stream = in.readString();
         this.website = in.readString();
         this.id = in.readInt();
-        this.images = in.readString();
     }
 
     public static final Creator<Radio> CREATOR = new Creator<Radio>() {

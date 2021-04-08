@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bookingman.svaratest.model.LoginResponse;
 import com.bookingman.svaratest.model.Radio;
 import com.bookingman.svaratest.model.RadioResponse;
+import com.bookingman.svaratest.model.User;
 import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +36,15 @@ public class RadioListActivity extends AppCompatActivity {
     private ArrayList<Radio> radioArrayList;
     private Radio selected_radio;
     public String TOKEN;
+    public User currUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.radio_recycler);
 
-        TOKEN = getIntent().getStringExtra("TOKEN");
+        currUser = getIntent().getParcelableExtra("User");
+        TOKEN = currUser.getToken();
+//        TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDZjMzQyNGI1NDg0OTA2ZTE4OTkzMDAiLCJpYXQiOjE2MTc3MDM5NzIsImV4cCI6MzIzNTQwODU0NSwiaXNzIjoiYTcyMjFlNTg1MTBhMDQyN2ZiNTUifQ.RBYnw-g5rDrkJCfqK7YIaDZu7jd4kwuyXmuwUxpJKcM";
         Log.d(TAG, "Token: " + TOKEN);
 
         addData(TOKEN);
@@ -52,7 +57,8 @@ public class RadioListActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(RadioListActivity.this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        selected_radio = new Radio("Radio Svara mantab", "city", 105.5, "logo", "stream", "website", 0, "images");
+//                        selected_radio = RecyclerView.ViewHolder.getPosition(position);
+                        selected_radio = new Radio("Radio Svara mantab", "city", 105.5, "logo", "stream", "website", 0);
                         Intent i = new Intent(RadioListActivity.this, RadioActivity.class);
                         i.putExtra("Radio_Terpilih", selected_radio);
                         startActivity(i);
@@ -74,33 +80,38 @@ public class RadioListActivity extends AppCompatActivity {
 //                .getInstance()
 //                .getApi()
 //                .getRadioAll(TOKEN);
-//        call.enqueue(new Callback<List<RadioResponse>>() {
+//        call.enqueue(new Callback<List<RadioResponse>>(){
+//
 //            @Override
 //            public void onResponse(Call<List<RadioResponse>> call, Response<List<RadioResponse>> response) {
-//                List<RadioResponse> rList = response.body();
-//                for (int i = 0; i < rList.size(); i++){
-//                    radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
-//                }
+////                RadioResponse r = response.body();
+////                Log.d(TAG, r.getName());
+////                Radio nowRadio = new Radio(r.getName(), r.getCity(), r.getFrequency(), r.getLogo(), r.getStream(), r.getWebsite(), r.getId());
+////                radioArrayList.add(nowRadio);
+////                List<RadioResponse> lr = response.body();
+////                Log.d(TAG, "Kelas dari bodynya adalah: " + response.body().getClass().toString());
+////                radioArrayList = response.body();
+//                Log.d("Retrofit Get", "Jumlah radio: " + radioArrayList.size());
 //            }
 //
 //            @Override
 //            public void onFailure(Call<List<RadioResponse>> call, Throwable t) {
-//
+//                Log.e("Retrofit Get", "Errornya adalah: " + t.getMessage());
 //            }
 //        });
-        radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
-        radioArrayList.add(new Radio("8EH Radio ITB", "Jakarta", 107.9, "logo", "stream", "website", 2, "images"));
-        radioArrayList.add(new Radio("Duar", "Jakarta", 107.9, "logo", "stream", "website", 3, "images"));
-        radioArrayList.add(new Radio("Ronaldo", "Jakarta", 107.9, "logo", "stream", "website", 4, "images"));
-        radioArrayList.add(new Radio("Messi FM", "Jakarta", 107.9, "logo", "stream", "website", 5, "images"));
-        radioArrayList.add(new Radio("Svara", "Jakarta", 107.9, "logo", "stream", "website", 6, "images"));
-        radioArrayList.add(new Radio("Dengarkanlah", "Jakarta", 107.9, "logo", "stream", "website", 7, "images"));
-        radioArrayList.add(new Radio("Aku", "Jakarta", 107.9, "logo", "stream", "website", 8, "images"));
-        radioArrayList.add(new Radio("Apa kabarnya", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
-        radioArrayList.add(new Radio("Pujaan hatiku", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
-        radioArrayList.add(new Radio("Aku", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
-        radioArrayList.add(new Radio("Disini menunggunya", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
-        radioArrayList.add(new Radio("Masih berharap", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
-        radioArrayList.add(new Radio("Lupa lanjutannya :(", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
+        radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Jakarta", 107.9, "logo", "stream", "website", 2));
+        radioArrayList.add(new Radio("Duar", "Jakarta", 107.9, "logo", "stream", "website", 3));
+        radioArrayList.add(new Radio("Ronaldo", "Jakarta", 107.9, "logo", "stream", "website", 4));
+        radioArrayList.add(new Radio("Messi FM", "Jakarta", 107.9, "logo", "stream", "website", 5));
+        radioArrayList.add(new Radio("Svara", "Jakarta", 107.9, "logo", "stream", "website", 6));
+        radioArrayList.add(new Radio("Dengarkanlah", "Jakarta", 107.9, "logo", "stream", "website", 7));
+        radioArrayList.add(new Radio("Aku", "Jakarta", 107.9, "logo", "stream", "website", 8));
+        radioArrayList.add(new Radio("Apa kabarnya", "Jakarta", 107.9, "logo", "stream", "website", 9));
+        radioArrayList.add(new Radio("Pujaan hatiku", "Jakarta", 107.9, "logo", "stream", "website", 9));
+        radioArrayList.add(new Radio("Aku", "Jakarta", 107.9, "logo", "stream", "website", 9));
+        radioArrayList.add(new Radio("Disini menunggunya", "Jakarta", 107.9, "logo", "stream", "website", 9));
+        radioArrayList.add(new Radio("Masih berharap", "Jakarta", 107.9, "logo", "stream", "website", 9));
+        radioArrayList.add(new Radio("Lupa lanjutannya :(", "Jakarta", 107.9, "logo", "stream", "website", 9));
     }
 }

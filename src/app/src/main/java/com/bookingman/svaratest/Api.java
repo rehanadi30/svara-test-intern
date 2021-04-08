@@ -36,16 +36,14 @@ public interface Api {
     @POST("users/guest-mode")
     Call<LoginResponse> guestMode();
 
-    @FormUrlEncoded
-    @GET("/radios?access_token={token}")
+    @GET("radios")
     Call<List<RadioResponse>> getRadioAll(
-            @Path("token") String accessToken
+            @Query("access_token") String accessToken
     );
 
-    @FormUrlEncoded
-    @GET("/radios/:{id}?access_token={token}")
+    @GET("radios/{id}")
     Call<RadioResponse> getRadioById(
             @Path("id") int id,
-            @Path("token") String token
+            @Query("access_token") String token
     );
 }

@@ -7,16 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".RadioActivity">
 
-    <ImageView
-        android:id="@+id/gambarRadio"
-        android:layout_width="295dp"
-        android:layout_height="295dp"
-        app:layout_constraintBottom_toTopOf="@+id/namaRadio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-<!--    <ImageView-->
+    <!--    <ImageView-->
 <!--        android:id="@+id/gambarRadio"-->
 <!--        android:adjustViewBounds="true"-->
 <!--        android:layout_height="150dp"-->
@@ -28,6 +19,17 @@
 <!--        android:src="@drawable/ic_svara_xml"/>-->
 
     <ImageView
+        android:id="@+id/gambarRadio"
+        android:layout_width="295dp"
+        android:layout_height="295dp"
+        app:layout_constraintBottom_toTopOf="@+id/namaRadio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +38,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namaRadio"
         app:srcCompat="@android:drawable/ic_media_play" />
+
+    <ImageView
+        android:id="@+id/pauseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/namaRadio"
+        app:srcCompat="@android:drawable/ic_media_pause" />
 
     <ImageView
         android:id="@+id/nextButton"
@@ -65,19 +77,23 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523" />
 
     <TextView
         android:id="@+id/namaRadio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Radio Keren Banget"
-        android:textStyle="bold"
         android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.609" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

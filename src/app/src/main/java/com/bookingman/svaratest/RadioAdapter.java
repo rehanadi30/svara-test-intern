@@ -10,16 +10,18 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bookingman.svaratest.model.Radio;
+import com.bookingman.svaratest.model.RadioResponse;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHolder>{
-    private ArrayList<Radio> radioList;
+    private List<Radio> radioList;
 
-    public RadioAdapter(ArrayList<Radio> radioList){
+    public RadioAdapter(List<Radio> radioList){
         this.radioList = radioList;
     }
 
@@ -67,5 +69,9 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioAdapter.RadioViewHol
             txtCityFreq = (TextView) itemView.findViewById(R.id.txt_city_freq);
             gambarRadio = (ImageView) itemView.findViewById(R.id.gambarRadio);
         }
+    }
+
+    public interface OnRadioListener{
+        void onRadioClick(int position);
     }
 }

@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bookingman.svaratest.model.LoginResponse;
+import com.bookingman.svaratest.model.User;
 
 import java.util.Objects;
 
@@ -35,6 +36,8 @@ public class LoginFragment extends Fragment {
     private String txt_password = "";
     private TextView skipText;
     public String TOKEN;
+
+    public User currUser;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -62,12 +65,14 @@ public class LoginFragment extends Fragment {
                         if(loginResponse != null){
                             Toast.makeText(getActivity(), "Sign In Berhasil!", Toast.LENGTH_SHORT).show();
 
+                            currUser = new User(loginResponse.getId(), loginResponse.getUsername(), loginResponse.getToken(), loginResponse.getExpire());
+
                             Log.d(TAG, "User: " + loginResponse.getUsername());
                             TOKEN = response.body().getToken();
                             Log.d(TAG, "Token: " + TOKEN);
 
                             Intent i = new Intent(getActivity(), RadioListActivity.class);
-                            i.putExtra("TOKEN", TOKEN);
+                            i.putExtra("User", currUser);
                             startActivity(i);
                             ((Activity) getActivity()).overridePendingTransition(0, 0);
                         } else{
