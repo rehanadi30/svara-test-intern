@@ -51,9 +51,35 @@ public class LoginFragment extends Fragment {
         skipText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), RadioListActivity.class);
-                startActivity(i);
-                ((Activity) getActivity()).overridePendingTransition(0, 0);
+                Call<LoginResponse> call = RetrofitClient
+                        .getInstance()
+                        .getApi()
+                        .guestMode();
+                call.enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        LoginResponse loginResponse = response.body();
+                        if(loginResponse != null){
+                            Toast.makeText(getActivity(), "Sign In Berhasil!", Toast.LENGTH_SHORT).show();
+
+                            Log.d(TAG, "User: " + loginResponse.getUsername());
+                            TOKEN = response.body().getToken();
+                            Log.d(TAG, "Token: " + TOKEN);
+
+                            Intent i = new Intent(getActivity(), RadioListActivity.class);
+                            i.putExtra("TOKEN", TOKEN);
+                            startActivity(i);
+                            ((Activity) getActivity()).overridePendingTransition(0, 0);
+                        } else{
+//                            Log.d(TAG, "Username yang masuk adalah: " + txt_username);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

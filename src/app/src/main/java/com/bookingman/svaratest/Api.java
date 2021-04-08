@@ -4,6 +4,7 @@ import com.bookingman.svaratest.model.DefaultResponse;
 import com.bookingman.svaratest.model.LoginResponse;
 import com.bookingman.svaratest.model.Radio;
 import com.bookingman.svaratest.model.RadioResponse;
+import com.bookingman.svaratest.model.RegisterResponse;
 import com.bookingman.svaratest.model.User;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import retrofit2.http.Query;
 public interface Api {
     @FormUrlEncoded
     @POST("users/register")
-    Call<DefaultResponse> registerUser(
+    Call<RegisterResponse> registerUser(
             @Field("username") String username,
             @Field("password") String password
     );
@@ -32,14 +33,13 @@ public interface Api {
             @Field("password") String password
     );
 
-    @FormUrlEncoded
     @POST("users/guest-mode")
-    Call<ResponseBody> guestMode();
+    Call<LoginResponse> guestMode();
 
     @FormUrlEncoded
     @GET("/radios?access_token={token}")
     Call<List<RadioResponse>> getRadioAll(
-            @Query("token") String accessToken
+            @Path("token") String accessToken
     );
 
     @FormUrlEncoded

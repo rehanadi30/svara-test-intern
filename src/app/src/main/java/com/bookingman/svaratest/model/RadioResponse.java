@@ -19,8 +19,8 @@ public class RadioResponse {
     private String website;
     @SerializedName("id")
     private int id;
-    @SerializedName("images")
-    private ArrayList<RadioImages> images;
+//    @SerializedName("images")
+//    private ArrayList<RadioImages> images;
 
     public String getName() {
         return name;
@@ -78,13 +78,13 @@ public class RadioResponse {
         this.id = id;
     }
 
-    public ArrayList<RadioImages> getImages() {
-        return images;
-    }
-
-    public void setImages(ArrayList<RadioImages> images) {
-        this.images = images;
-    }
+//    public ArrayList<RadioImages> getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(ArrayList<RadioImages> images) {
+//        this.images = images;
+//    }
 
     public RadioResponse(String name, String city, Double frequency, String logo, String stream, String website, int id, ArrayList<RadioImages> images) {
         this.name = name;
@@ -94,6 +94,6 @@ public class RadioResponse {
         this.stream = stream;
         this.website = website;
         this.id = id;
-        this.images = images;
+//        this.images = images;
     }
 }

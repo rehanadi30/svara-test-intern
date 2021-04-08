@@ -67,26 +67,40 @@ public class RadioListActivity extends AppCompatActivity {
 
     private void addData(String TOKEN) {
         radioArrayList = new ArrayList<>();
-        for (int i = 0; i < radioArrayList.size(); i++){
+//        for (int i = 0; i < radioArrayList.size(); i++){
 //            radioArrayList.add();
-        }
-        Call<List<RadioResponse>> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getRadioAll(TOKEN);
-        call.enqueue(new Callback<List<RadioResponse>>() {
-            @Override
-            public void onResponse(Call<List<RadioResponse>> call, Response<List<RadioResponse>> response) {
-                List<RadioResponse> rList = response.body();
-                for (int i = 0; i < rList.size(); i++){
-                    radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<RadioResponse>> call, Throwable t) {
-
-            }
-        });
+//        }
+//        Call<List<RadioResponse>> call = RetrofitClient
+//                .getInstance()
+//                .getApi()
+//                .getRadioAll(TOKEN);
+//        call.enqueue(new Callback<List<RadioResponse>>() {
+//            @Override
+//            public void onResponse(Call<List<RadioResponse>> call, Response<List<RadioResponse>> response) {
+//                List<RadioResponse> rList = response.body();
+//                for (int i = 0; i < rList.size(); i++){
+//                    radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<RadioResponse>> call, Throwable t) {
+//
+//            }
+//        });
+        radioArrayList.add(new Radio("Ardan", "Jakarta", 107.9, "logo", "stream", "website", 1, "images"));
+        radioArrayList.add(new Radio("8EH Radio ITB", "Jakarta", 107.9, "logo", "stream", "website", 2, "images"));
+        radioArrayList.add(new Radio("Duar", "Jakarta", 107.9, "logo", "stream", "website", 3, "images"));
+        radioArrayList.add(new Radio("Ronaldo", "Jakarta", 107.9, "logo", "stream", "website", 4, "images"));
+        radioArrayList.add(new Radio("Messi FM", "Jakarta", 107.9, "logo", "stream", "website", 5, "images"));
+        radioArrayList.add(new Radio("Svara", "Jakarta", 107.9, "logo", "stream", "website", 6, "images"));
+        radioArrayList.add(new Radio("Dengarkanlah", "Jakarta", 107.9, "logo", "stream", "website", 7, "images"));
+        radioArrayList.add(new Radio("Aku", "Jakarta", 107.9, "logo", "stream", "website", 8, "images"));
+        radioArrayList.add(new Radio("Apa kabarnya", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
+        radioArrayList.add(new Radio("Pujaan hatiku", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
+        radioArrayList.add(new Radio("Aku", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
+        radioArrayList.add(new Radio("Disini menunggunya", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
+        radioArrayList.add(new Radio("Masih berharap", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
+        radioArrayList.add(new Radio("Lupa lanjutannya :(", "Jakarta", 107.9, "logo", "stream", "website", 9, "images"));
     }
 }
